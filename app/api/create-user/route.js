@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import { users } from "../hello/route"
 
-export async function POST() {
+export async function POST(request){
     try {
         const {name , email , age} = await request.json()
 
@@ -9,8 +9,7 @@ export async function POST() {
             return NextResponse.json({
                 success : false ,
                 error : "name , email and age are required"
-            })
-            {status : 400}
+            }, { status: 400 })
         }
 
         const existingEmail = users.find(user => user.email === email)
@@ -18,8 +17,7 @@ export async function POST() {
             return NextResponse.json({
                 success : false ,
                 error : "email already exists"
-            })
-            {staus : 400}
+            }, { status: 400 })
         }
 
         const newUser = {
@@ -33,15 +31,13 @@ export async function POST() {
         success : true ,
         data : users ,
         message : "user created"
-      })
-      {status : 201}
+      }, { status: 201 })
 
     } catch (error)  {
-        NextResponse.json({
+        return NextResponse.json({
             success: false ,
             error : "failed to create a user"
-        })
-            {status : 500}
+        }, { status: 500 })
 
     }    
 }
