@@ -25,8 +25,10 @@ export async function POST(request){
             name : name ,
             email : email ,
             age : age
-        }
+        }  
+
       users.push(newUser)
+      
       return NextResponse.json({
         success : true ,
         data : users ,
