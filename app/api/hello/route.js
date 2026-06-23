@@ -10,6 +10,15 @@ export const users = [
 
 export async function GET(request) {
   try {
+
+    const searchParams = request.nextUrl.searchParams
+    const name = searchParams.get("name") // single value`
+    const age = searchParams.get("age") // single value`
+    console.log(name , age)
+
+    
+
+
     return NextResponse.json({
         success : true ,
         data : users ,
@@ -22,4 +31,4 @@ export async function GET(request) {
     })
     {status : 500}
   }
-}
+};
